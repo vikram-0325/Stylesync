@@ -1,0 +1,19 @@
+{
+  "name": "stylesync-app",
+  "version": "1.0.0",
+  "description": "StyleSync - Fashion Social Media Platform",
+  "main": "stylesync-app.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "fashion",
+    "social-media",
+    "style",
+    "ai",
+    "try-on"
+  ],
+  "author": "StyleSync Team",
+  "license": "MIT"
+}

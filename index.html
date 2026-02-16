@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StyleSync - Fashion Social Platform with AI Try-On">
+    <meta name="theme-color" content="#6366F1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="StyleSync">
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlN0eWxlU3luYyAtIEZhc2hpb24gU29jaWFsIiwKICAic2hvcnRfbmFtZSI6ICJTdHlsZVN5bmMiLAogICJkZXNjcmlwdGlvbiI6ICJGYXN0aW9uIHNvY2lhbCBwbGF0Zm9ybSB3aXRoIEFJIHRyeS1vbiIsCiAgInN0YXJ0X3VybCI6ICIuLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI0ZGRkZGRiIsCiAgInRoZW1lX2NvbG9yIjogIiM2MzY2RjEiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSGRwWkhSb1BTSXhNakFpSUdobGFXZG9kRDBpTVRJd0lqNDhjbVZqZENCM2FXUjBhRDBpTVRJd0lpQm9aV2xuYUhROUlqRXlNQ0lnY21Ga2FYVnpQU0l5TUNJZ1ptbHNiRDBpZFhKc0tDTm5jbUZrS1NJdlBqeDBaWGgwSUhnOUlqWXdJaUI1UFNJMk1DSWdabWxzYkQwaWQyaHBkR1VpSUdadmJuUXRjMmw2WlQwaU5EQWlJR1p2Ym5RdGQyVnBaMmgwUFNJNE1EQWlQbE04TDNSbGVIUStQQzl6ZG1jKyIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0sCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhkcFpIUm9QU0kxTVRJaUlHaGxhV2RvZEQwaU5URXlJajQ4Y21WamRDQjNhV1IwYUQwaU5URXlJaUJvWldsbmFIUTlJalV4TWlJZ2NtRmthWFZ6UFNJeU1DSWdabWxzYkQwaWRYSnNLQ05uY21Ga0tTSXZQangwWlhoMElIZzlJakkxTmlJZ2VUMGlNalUySWlCbWFXeHNQU0ozYUdsMFpTSWdabTl1ZEMxemFYcGxQU0kzTWlJZ1ptOXVkQzEzWldsbmFIUTlJamN3TUNJK1V6d3ZkR1Y0ZEQ0OEwzTjJaejQiLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9CiAgXQp9">
+    <title>StyleSync - Fashion Social Platform</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --text-primary: #1A1A1A;
+            --text-secondary: #6C757D;
+            --text-tertiary: #ADB5BD;
+            --accent: #6366F1;
+            --accent-secondary: #8B5CF6;
+            --accent-pink: #EC4899;
+            --border: #E9ECEF;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        body.dark-mode {
+            --bg-primary: #0F0F0F;
+            --bg-secondary: #1A1A1A;
+            --text-primary: #F5F5F5;
+            --text-secondary: #A1A1A1;
+            --border: #2A2A2A;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .app {
+            max-width: 430px;
+            margin: 0 auto;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            padding-bottom: 90px;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 16px;
+            display: grid;
+            grid-template-columns: 36px 1fr 72px;
+            align-items: center;
+            z-index: 100;
+        }
+
+        body.dark-mode .header {
+            background: rgba(15, 15, 15, 0.98);
+        }
+
+        .logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .app-name-container {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .app-name {
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 8px;
+        }
+
+        .app-name:hover {
+            background: var(--bg-secondary);
+        }
+
+        .app-name svg {
+            width: 12px;
+            height: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .app-name.active svg {
+            transform: rotate(180deg);
+        }
+
+        .feed-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            min-width: 180px;
+            margin-top: 8px;
+            display: none;
+            z-index: 101;
+        }
+
+        .feed-dropdown.active {
+            display: block;
+        }
+
+        .feed-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .feed-option:hover {
+            background: var(--bg-secondary);
+        }
+
+        .feed-option.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            color: white;
+        }
+
+        .feed-option svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .icon-btn:hover {
+            background: var(--bg-secondary);
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-pink);
+            border-radius: 50%;
+            border: 2px solid var(--bg-primary);
+        }
+
+        /* Stories */
+        .stories {
+            padding: 16px;
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .stories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .story {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            min-width: 64px;
+        }
+
+        .story-ring {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-pink));
+            padding: 2.5px;
+        }
+
+        .story-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 13.5px;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+        }
+
+        .story-name {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Feed */
+        .feed {
+            padding: 0;
+        }
+
+        .post {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+        }
+
+        .post-header {
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-info {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-pink));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .username {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .follow-btn {
+            padding: 6px 16px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .post-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #F3F4F6, #E5E7EB);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+        }
+
+        .post-actions {
+            padding: 8px 16px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            padding: 0;
+        }
+
+        .action-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .outfit-link {
+            margin-left: auto;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Profile */
+        .profile {
+            padding: 0;
+        }
+
+        .profile-header {
+            padding: 20px 16px 16px;
+        }
+
+        .profile-top {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+
+        .profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .profile-info-top {
+            flex: 1;
+        }
+
+        .profile-name-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .profile-name {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .profile-username {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .stats-mini {
+            display: flex;
+            gap: 16px;
+        }
+
+        .stat-mini {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .profile-bio {
+            font-size: 13px;
+            line-height: 1.5;
+            margin-top: 12px;
+        }
+
+        .achievements {
+            padding: 12px 16px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-secondary);
+            overflow-x: auto;
+        }
+
+        .achievements::-webkit-scrollbar {
+            display: none;
+        }
+
+        .achievements-scroll {
+            display: flex;
+            gap: 12px;
+        }
+
+        .achievement {
+            display: flex;
+            gap: 8px;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 10px;
+            min-width: fit-content;
+            box-shadow: var(--shadow-sm);
+        }
+
+        body.dark-mode .achievement {
+            background: var(--bg-primary);
+        }
+
+        .achievement-icon {
+            font-size: 20px;
+        }
+
+        .achievement-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .achievement-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .achievement-value {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .tab.active {
+            color: var(--text-primary);
+            border-bottom-color: var(--accent);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--border);
+        }
+
+        .grid-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #F3F4F6, #E5E7EB);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        /* Search */
+        .search-header {
+            padding: 16px;
+            background: var(--bg-primary);
+            position: sticky;
+            top: 61px;
+            z-index: 50;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-bar {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .search-bar input {
+            flex: 1;
+            border: none;
+            background: none;
+            outline: none;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .filter-btn {
+            padding: 10px 14px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .filter-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            min-width: 120px;
+            margin-top: 8px;
+            display: none;
+            z-index: 51;
+        }
+
+        .filter-dropdown.active {
+            display: block;
+        }
+
+        .filter-option {
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .filter-option:hover {
+            background: var(--bg-secondary);
+        }
+
+        .filter-option.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .section-title {
+            padding: 20px 16px 12px;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .banner-container {
+            margin: 0 16px 20px;
+            position: relative;
+        }
+
+        .banner {
+            height: 160px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary), var(--accent-pink));
+            padding: 20px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-slide {
+            position: absolute;
+            inset: 0;
+            padding: 20px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .banner-slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .banner-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .banner-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .banner-stat {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .banner-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+        }
+
+        .banner-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+        }
+
+        .banner-dot.active {
+            width: 20px;
+            border-radius: 3px;
+            background: white;
+        }
+
+        .explore-tagline {
+            padding: 0 16px 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Shop */
+        .shop-content {
+            padding: 16px;
+        }
+
+        .tryon-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .product-card {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .product-image {
+            aspect-ratio: 0.8;
+            background: linear-gradient(135deg, #F3F4F6, #E5E7EB);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        .product-info {
+            padding: 10px;
+        }
+
+        .product-name {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .product-price {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* Vault */
+        .vault-content {
+            padding: 20px 16px 100px;
+        }
+
+        .vault-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .vault-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .avatar-placeholder {
+            width: 200px;
+            height: 250px;
+            margin: 0 auto 20px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #F3F4F6, #E5E7EB);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .customize-btn {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto 32px;
+            display: block;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .outfit-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .outfit-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .outfit-preview {
+            font-size: 60px;
+            margin-bottom: 12px;
+        }
+
+        .outfit-name {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .try-on-btn {
+            padding: 8px 16px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Messages/Inbox */
+        .content-wrapper {
+            padding: 16px;
+        }
+
+        .chat-list, .notif-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-item, .notif-item {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            gap: 12px;
+            cursor: pointer;
+            border: 1px solid var(--border);
+        }
+
+        .chat-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .chat-info {
+            flex: 1;
+        }
+
+        .chat-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .chat-preview {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .notif-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(236, 72, 153, 0.2);
+            color: var(--accent-pink);
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 24px;
+            padding: 8px 12px;
+            display: flex;
+            gap: 4px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            z-index: 200;
+        }
+
+        body.dark-mode .bottom-nav {
+            background: var(--bg-secondary);
+        }
+
+        .nav-item {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .nav-item.active {
+            color: var(--accent);
+        }
+
+        .nav-item svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .center-add {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            border-radius: 12px;
+            transform: rotate(45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            margin: 0 4px;
+        }
+
+        .center-add svg {
+            transform: rotate(-45deg);
+        }
+
+        /* Modals */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 24px;
+            max-width: 400px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .modal-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .close-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .settings-item:last-child {
+            border-bottom: none;
+        }
+
+        .toggle {
+            width: 44px;
+            height: 24px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .toggle.active {
+            background: var(--accent);
+        }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .toggle.active::after {
+            left: 22px;
+        }
+
+        .share-menu {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 16px;
+        }
+
+        .share-menu h3 {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .share-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-bottom: 4px;
+        }
+
+        .share-option:hover {
+            background: var(--bg-secondary);
+        }
+
+        .share-option svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Install Prompt */
+        .install-prompt {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 16px 20px;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--accent);
+            display: none;
+            align-items: center;
+            gap: 12px;
+            max-width: 360px;
+            width: 90%;
+            z-index: 300;
+            transition: transform 0.3s ease;
+        }
+
+        .install-prompt.show {
+            display: flex;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .install-prompt-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .install-prompt-text {
+            flex: 1;
+        }
+
+        .install-prompt-title {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .install-prompt-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .install-prompt-btn {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .install-prompt-close {
+            width: 28px;
+            height: 28px;
+            background: var(--bg-secondary);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div class="header">
+            <div class="logo">S</div>
+            <div class="app-name-container">
+                <div class="app-name" id="appName" onclick="toggleFeedDropdown()">
+                    StyleSync
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </div>
+                <div class="feed-dropdown" id="feedDropdown">
+                    <div class="feed-option active" onclick="selectFeed('all')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        </svg>
+                        For You
+                    </div>
+                    <div class="feed-option" onclick="selectFeed('following')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                        </svg>
+                        Following
+                    </div>
+                    <div class="feed-option" onclick="selectFeed('favorites')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                        Favorites
+                    </div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" onclick="showPage('inbox')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                    </svg>
+                    <div class="notification-dot"></div>
+                </button>
+                <button class="icon-btn" onclick="showPage('messages')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="content"></div>
+
+        <div class="bottom-nav">
+            <div class="nav-item active" onclick="showPage('home')" data-page="home">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+            </div>
+            <div class="nav-item" onclick="showPage('shop')" data-page="shop">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <path d="M16 10a4 4 0 0 1-8 0"/>
+                </svg>
+            </div>
+            <div class="center-add" onclick="openCreate()">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19"/>
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+            </div>
+            <div class="nav-item" onclick="showPage('search')" data-page="search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+            </div>
+            <div class="nav-item" onclick="showPage('profile')" data-page="profile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>⚙️ Settings</h2>
+                <p style="font-size:13px;color:var(--text-secondary);margin-top:4px">Customize your StyleSync experience</p>
+            </div>
+            
+            <!-- Account Settings -->
+            <div style="margin-bottom:20px">
+                <div style="font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">Account</div>
+                
+                <div class="settings-item" onclick="alert('Edit Profile: Change name, bio, avatar')">
+                    <span style="font-weight:600">✏️ Edit Profile</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </div>
+                
+                <div class="settings-item" onclick="alert('Change Password')">
+                    <span>🔐 Change Password</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </div>
+                
+                <div class="settings-item">
+                    <span>🔒 Private Account</span>
+                    <div class="toggle" id="privateToggle" onclick="toggleSetting(this, 'privateToggle')"></div>
+                </div>
+            </div>
+
+            <!-- Appearance -->
+            <div style="margin-bottom:20px">
+                <div style="font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">Appearance</div>
+                
+                <div class="settings-item">
+                    <span>🌙 Dark Mode</span>
+                    <div class="toggle" id="darkToggle" onclick="toggleDarkMode()"></div>
+                </div>
+            </div>
+
+            <!-- Notifications -->
+            <div style="margin-bottom:20px">
+                <div style="font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">Notifications</div>
+                
+                <div class="settings-item">
+                    <span>🔔 Push Notifications</span>
+                    <div class="toggle active" id="pushToggle" onclick="toggleSetting(this, 'pushToggle')"></div>
+                </div>
+                
+                <div class="settings-item">
+                    <span>❤️ Likes</span>
+                    <div class="toggle active" id="likesToggle" onclick="toggleSetting(this, 'likesToggle')"></div>
+                </div>
+                
+                <div class="settings-item">
+                    <span>💬 Comments</span>
+                    <div class="toggle active" id="commentsToggle" onclick="toggleSetting(this, 'commentsToggle')"></div>
+                </div>
+                
+                <div class="settings-item">
+                    <span>👥 New Followers</span>
+                    <div class="toggle active" id="followersToggle" onclick="toggleSetting(this, 'followersToggle')"></div>
+                </div>
+            </div>
+
+            <!-- Privacy -->
+            <div style="margin-bottom:20px">
+                <div style="font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">Privacy</div>
+                
+                <div class="settings-item">
+                    <span>👁️ Show Activity Status</span>
+                    <div class="toggle active" id="activityToggle" onclick="toggleSetting(this, 'activityToggle')"></div>
+                </div>
+                
+                <div class="settings-item">
+                    <span>💬 Allow Comments</span>
+                    <div class="toggle active" id="allowCommentsToggle" onclick="toggleSetting(this, 'allowCommentsToggle')"></div>
+                </div>
+                
+                <div class="settings-item">
+                    <span>🔗 Allow Story Sharing</span>
+                    <div class="toggle active" id="storyShareToggle" onclick="toggleSetting(this, 'storyShareToggle')"></div>
+                </div>
+                
+                <div class="settings-item" onclick="alert('Blocked Accounts: Manage blocked users')">
+                    <span>🚫 Blocked Accounts</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Content Preferences -->
+            <div style="margin-bottom:20px">
+                <div style="font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">Content</div>
+                
+                <div class="settings-item">
+                    <span>📹 Auto-play Videos</span>
+                    <div class="toggle active" id="autoplayToggle" onclick="toggleSetting(this, 'autoplayToggle')"></div>
+                </div>
+                
+                <div class="settings-item">
+                    <span>📶 High Quality Uploads</span>
+                    <div class="toggle active" id="qualityToggle" onclick="toggleSetting(this, 'qualityToggle')"></div>
+                </div>
+                
+                <div class="settings-item">
+                    <span>💾 Save Data</span>
+                    <div class="toggle" id="dataToggle" onclick="toggleSetting(this, 'dataToggle')"></div>
+                </div>
+            </div>
+
+            <!-- About -->
+            <div style="margin-bottom:20px">
+                <div style="font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">About</div>
+                
+                <div class="settings-item" onclick="alert('Help & Support: FAQs, Contact Us, Report a Problem')">
+                    <span>❓ Help & Support</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </div>
+                
+                <div class="settings-item" onclick="alert('About StyleSync: Version 1.0.0')">
+                    <span>ℹ️ About StyleSync</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </div>
+                
+                <div class="settings-item" onclick="alert('Privacy Policy')">
+                    <span>📄 Privacy Policy</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </div>
+                
+                <div class="settings-item" onclick="alert('Terms of Service')">
+                    <span>📋 Terms of Service</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Logout -->
+            <button style="width:100%;padding:12px;background:#DC2626;color:white;border:none;border-radius:12px;font-weight:600;cursor:pointer;margin-bottom:12px" onclick="alert('Logged out successfully')">
+                🚪 Log Out
+            </button>
+            
+            <button class="close-btn" onclick="closeModal('settingsModal')">Close</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="shareModal">
+        <div class="modal-content share-menu">
+            <h3>Share</h3>
+            <div class="share-option" onclick="shareAction('save')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                </svg>
+                <span>Save Post</span>
+            </div>
+            <div class="share-option" onclick="shareAction('download')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <span>Download</span>
+            </div>
+            <div class="share-option" onclick="shareAction('copy')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                </svg>
+                <span>Copy Link</span>
+            </div>
+            <button class="close-btn" onclick="closeModal('shareModal')">Close</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="createModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📸 Create</h2>
+                <p style="font-size:13px;color:var(--text-secondary);margin-top:4px">Choose what you want to create</p>
+            </div>
+            
+            <div class="share-option" onclick="createAction('post')" style="margin-bottom:8px">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <polyline points="21 15 16 10 5 21"/>
+                </svg>
+                <span style="font-weight:600">Post</span>
+            </div>
+            
+            <div class="share-option" onclick="createAction('story')" style="margin-bottom:8px">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+                <span style="font-weight:600">Story</span>
+            </div>
+            
+            <div class="share-option" onclick="createAction('reel')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <line x1="17" y1="2" x2="17" y2="22"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                </svg>
+                <span style="font-weight:600">Reel</span>
+            </div>
+            
+            <button class="close-btn" onclick="closeModal('createModal')">Cancel</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="createModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✨ Create</h2>
+                <p style="font-size:13px;color:var(--text-secondary);margin-top:4px">What would you like to create?</p>
+            </div>
+            
+            <div class="share-option" onclick="createAction('post')" style="margin-bottom:8px">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <polyline points="21 15 16 10 5 21"/>
+                </svg>
+                <span style="font-weight:600">Post</span>
+            </div>
+            
+            <div class="share-option" onclick="createAction('story')" style="margin-bottom:8px">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+                <span style="font-weight:600">Story</span>
+            </div>
+            
+            <div class="share-option" onclick="createAction('reel')" style="margin-bottom:8px">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+                    <line x1="7" y1="2" x2="7" y2="22"/>
+                    <line x1="17" y1="2" x2="17" y2="22"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                </svg>
+                <span style="font-weight:600">Reel</span>
+            </div>
+            
+            <div class="share-option" onclick="createAction('tryon')" style="margin-bottom:8px">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <span style="font-weight:600">AI Try-On</span>
+            </div>
+            
+            <button class="close-btn" onclick="closeModal('createModal')">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 'home';
+        let currentBanner = 0;
+        let bannerInterval;
+        let currentProfileTab = 'posts';
+        let currentFilter = 'all';
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            loadPreferences();
+            showPage('home');
+        });
+
+        function showPage(page) {
+            currentPage = page;
+            const content = document.getElementById('content');
+            
+            // Update nav
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.page === page) item.classList.add('active');
+            });
+            
+            // Clear banner interval
+            if (bannerInterval) clearInterval(bannerInterval);
+            
+            switch(page) {
+                case 'home':
+                    content.innerHTML = getHomePage();
+                    break;
+                case 'shop':
+                    content.innerHTML = getShopPage();
+                    break;
+                case 'search':
+                    content.innerHTML = getSearchPage();
+                    setTimeout(startBannerRotation, 100);
+                    break;
+                case 'profile':
+                    content.innerHTML = getProfilePage();
+                    break;
+                case 'vault':
+                    content.innerHTML = getVaultPage();
+                    break;
+                case 'messages':
+                    content.innerHTML = getMessagesPage();
+                    break;
+                case 'inbox':
+                    content.innerHTML = getInboxPage();
+                    break;
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        function getHomePage() {
+            return `
+                <div class="stories">
+                    <div class="story">
+                        <div class="story-ring"><div class="story-avatar">+</div></div>
+                        <span class="story-name">Add</span>
+                    </div>
+                    ${['👗', '✨', '💫', '🌸'].map((e, i) => `
+                        <div class="story">
+                            <div class="story-ring"><div class="story-avatar">${e}</div></div>
+                            <span class="story-name">@user${i}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="feed">
+                    ${[
+                        {user: '@styleicon', avatar: '👑', img: '🌸', likes: '2.3K', outfit: 'Summer Vibes'},
+                        {user: '@fashionista', avatar: '💫', img: '🌊', likes: '4.5K', outfit: 'Beach Wear'},
+                        {user: '@trendz', avatar: '✨', img: '🌙', likes: '1.8K', outfit: 'Night Out'}
+                    ].map(p => `
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="user-info">
+                                    <div class="avatar">${p.avatar}</div>
+                                    <span class="username">${p.user}</span>
+                                </div>
+                                <button class="follow-btn">Follow</button>
+                            </div>
+                            <div class="post-image">${p.img}</div>
+                            <div class="post-actions">
+                                <button class="action-btn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                    </svg>
+                                    ${p.likes}
+                                </button>
+                                <button class="action-btn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                                    </svg>
+                                </button>
+                                <button class="action-btn" onclick="openShare()">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="18" cy="5" r="3"/>
+                                        <circle cx="6" cy="12" r="3"/>
+                                        <circle cx="18" cy="19" r="3"/>
+                                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                                    </svg>
+                                </button>
+                                <button class="action-btn outfit-link">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                                    </svg>
+                                    ${p.outfit}
+                                </button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function getProfilePage() {
+            return `
+                <div class="profile">
+                    <div class="profile-header">
+                        <div class="profile-top">
+                            <div class="profile-pic">S</div>
+                            <div class="profile-info-top">
+                                <div class="profile-name-row">
+                                    <div>
+                                        <div class="profile-name">StyleIcon</div>
+                                        <div class="profile-username">@styleicon</div>
+                                    </div>
+                                    <button class="icon-btn" onclick="openSettings()">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="3"/>
+                                            <path d="M12 1v6m0 6v6"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="stats-mini">
+                                    <div class="stat-mini">
+                                        <span class="stat-value">342</span>
+                                        <span class="stat-label">Posts</span>
+                                    </div>
+                                    <div class="stat-mini">
+                                        <span class="stat-value">24.5K</span>
+                                        <span class="stat-label">Followers</span>
+                                    </div>
+                                    <div class="stat-mini">
+                                        <span class="stat-value">1.2K</span>
+                                        <span class="stat-label">Following</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-bio">Fashion enthusiast | Style curator ✨<br>Making every outfit count 💕</div>
+                    </div>
+                    <div class="achievements">
+                        <div class="achievements-scroll">
+                            ${[
+                                {icon: '🔥', label: 'Streak', value: '45d'},
+                                {icon: '💬', label: 'Comments', value: '2.4K'},
+                                {icon: '❤️', label: 'Likes', value: '34K'}
+                            ].map(a => `
+                                <div class="achievement">
+                                    <div class="achievement-icon">${a.icon}</div>
+                                    <div class="achievement-info">
+                                        <div class="achievement-label">${a.label}</div>
+                                        <div class="achievement-value">${a.value}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="tabs">
+                        <button class="tab ${currentProfileTab === 'posts' ? 'active' : ''}" onclick="switchProfileTab('posts')">Posts</button>
+                        <button class="tab ${currentProfileTab === 'reels' ? 'active' : ''}" onclick="switchProfileTab('reels')">Reels</button>
+                        <button class="tab ${currentProfileTab === 'saved' ? 'active' : ''}" onclick="switchProfileTab('saved')">Saved</button>
+                    </div>
+                    <div class="grid" id="profileGrid">
+                        ${getProfileGrid()}
+                    </div>
+                </div>
+            `;
+        }
+
+        function getProfileGrid() {
+            if (currentProfileTab === 'reels') {
+                return ['📹', '🎬', '🎥', '🎭', '🎪', '🎨', '🎬', '📹', '🎥'].map(e => `<div class="grid-item">${e}</div>`).join('');
+            } else if (currentProfileTab === 'saved') {
+                return ['⭐', '💾', '📌', '🔖', '💫', '✨', '⭐', '💾', '📌'].map(e => `<div class="grid-item">${e}</div>`).join('');
+            }
+            return ['🌸', '🌊', '🌙', '⭐', '🌺', '🎨', '💎', '✨', '🌟'].map(e => `<div class="grid-item">${e}</div>`).join('');
+        }
+
+        function switchProfileTab(tab) {
+            currentProfileTab = tab;
+            document.getElementById('profileGrid').innerHTML = getProfileGrid();
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function getSearchPage() {
+            return `
+                <div class="search-header">
+                    <div class="search-bar">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                        <input type="text" placeholder="Search styles...">
+                    </div>
+                    <div class="filter-btn" onclick="toggleFilter()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+                        </svg>
+                        <div class="filter-dropdown" id="filterDropdown">
+                            <div class="filter-option ${currentFilter === 'all' ? 'active' : ''}" onclick="selectFilter('all')">All</div>
+                            <div class="filter-option ${currentFilter === 'reels' ? 'active' : ''}" onclick="selectFilter('reels')">Reels</div>
+                            <div class="filter-option ${currentFilter === 'posts' ? 'active' : ''}" onclick="selectFilter('posts')">Posts</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+                    </svg>
+                    What's Hot
+                </div>
+                <div class="banner-container">
+                    <div class="banner">
+                        ${[
+                            {icon: '🔥', title: 'Y2K Comeback', stat: '+234% trending'},
+                            {icon: '✨', title: 'Oversized Blazers', stat: '+189% trending'},
+                            {icon: '💫', title: 'Neon Accents', stat: '+156% trending'},
+                            {icon: '🌸', title: 'Soft Aesthetic', stat: '+278% trending'}
+                        ].map((b, i) => `
+                            <div class="banner-slide ${i === 0 ? 'active' : ''}">
+                                <div class="banner-icon">${b.icon}</div>
+                                <div class="banner-title">${b.title}</div>
+                                <div class="banner-stat">${b.stat}</div>
+                            </div>
+                        `).join('')}
+                        <div class="banner-dots">
+                            ${[0,1,2,3].map(i => `<div class="banner-dot ${i === 0 ? 'active' : ''}" onclick="changeBanner(${i})"></div>`).join('')}
+                        </div>
+                    </div>
+                </div>
+                <div class="section-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+                    </svg>
+                    Explore
+                </div>
+                <p class="explore-tagline">Explore Your Vibe ✨</p>
+                <div class="grid">
+                    ${['🌸', '🌊', '🌙', '⭐', '🌺', '🎨', '💎', '✨', '🌟'].map(e => `<div class="grid-item">${e}</div>`).join('')}
+                </div>
+            `;
+        }
+
+        function getShopPage() {
+            return `
+                <div class="shop-content">
+                    <button class="tryon-btn" onclick="showPage('vault')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        AI Try-On Vault
+                    </button>
+                    <h2 style="margin-bottom:16px;font-size:20px;font-weight:700">Shop Outfits</h2>
+                    <div class="shop-grid">
+                        ${[
+                            {name: 'Dress', price: '$89', emoji: '👗'},
+                            {name: 'Blazer', price: '$149', emoji: '👔'},
+                            {name: 'Jacket', price: '$79', emoji: '🧥'},
+                            {name: 'Top', price: '$39', emoji: '👚'},
+                            {name: 'Pants', price: '$69', emoji: '👖'},
+                            {name: 'Swimwear', price: '$59', emoji: '🩱'}
+                        ].map(p => `
+                            <div class="product-card">
+                                <div class="product-image">${p.emoji}</div>
+                                <div class="product-info">
+                                    <div class="product-name">${p.name}</div>
+                                    <div class="product-price">${p.price}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function getVaultPage() {
+            return `
+                <div class="vault-content">
+                    <div class="vault-header">
+                        <h2>🎭 AI Try-On Vault</h2>
+                        <p style="color:var(--text-secondary);font-size:14px">Create your avatar and try on outfits</p>
+                    </div>
+                    <div class="avatar-placeholder">👤</div>
+                    <button class="customize-btn">Customize Avatar</button>
+                    <h3 style="margin-bottom:16px;font-size:18px;font-weight:700">Try These Outfits</h3>
+                    <div class="outfit-grid">
+                        ${['👗', '👔', '🧥', '👚', '👖', '🩱'].map((e, i) => `
+                            <div class="outfit-card">
+                                <div class="outfit-preview">${e}</div>
+                                <div class="outfit-name">Outfit ${i+1}</div>
+                                <button class="try-on-btn">Try On</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function getMessagesPage() {
+            return `
+                <div class="content-wrapper">
+                    <h2 style="margin-bottom:16px;font-size:20px;font-weight:700">Messages</h2>
+                    <div class="chat-list">
+                        ${[
+                            {name: 'AI Assistant', preview: 'How can I help?', avatar: '🤖'},
+                            {name: '@fashionista', preview: 'Love your post!', avatar: '💫'},
+                            {name: '@trendz', preview: 'Check this out', avatar: '✨'}
+                        ].map(c => `
+                            <div class="chat-item">
+                                <div class="chat-avatar">${c.avatar}</div>
+                                <div class="chat-info">
+                                    <div class="chat-name">${c.name}</div>
+                                    <div class="chat-preview">${c.preview}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function getInboxPage() {
+            return `
+                <div class="content-wrapper">
+                    <h2 style="margin-bottom:16px;font-size:20px;font-weight:700">Notifications</h2>
+                    <div class="notif-list">
+                        ${[
+                            {msg: '<strong>@fashionista</strong> liked your post', time: '2m'},
+                            {msg: '<strong>@trendz</strong> followed you', time: '15m'},
+                            {msg: '<strong>@styleicon</strong> liked your reel', time: '1h'}
+                        ].map(n => `
+                            <div class="notif-item">
+                                <div class="notif-icon">❤️</div>
+                                <div style="flex:1">
+                                    <div style="font-size:13px;margin-bottom:2px">${n.msg}</div>
+                                    <div style="font-size:11px;color:var(--text-tertiary)">${n.time} ago</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Banner rotation
+        function startBannerRotation() {
+            bannerInterval = setInterval(() => {
+                currentBanner = (currentBanner + 1) % 4;
+                changeBanner(currentBanner);
+            }, 4000);
+        }
+
+        function changeBanner(index) {
+            document.querySelectorAll('.banner-slide').forEach((s, i) => {
+                s.classList.toggle('active', i === index);
+            });
+            document.querySelectorAll('.banner-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === index);
+            });
+            currentBanner = index;
+            if (bannerInterval) clearInterval(bannerInterval);
+            startBannerRotation();
+        }
+
+        // Feed dropdown
+        function toggleFeedDropdown() {
+            const dropdown = document.getElementById('feedDropdown');
+            const appName = document.getElementById('appName');
+            dropdown.classList.toggle('active');
+            appName.classList.toggle('active');
+        }
+
+        function selectFeed(type) {
+            document.querySelectorAll('.feed-option').forEach(o => o.classList.remove('active'));
+            event.target.classList.add('active');
+            toggleFeedDropdown();
+        }
+
+        // Filter dropdown
+        function toggleFilter() {
+            document.getElementById('filterDropdown').classList.toggle('active');
+            event.stopPropagation();
+        }
+
+        function selectFilter(type) {
+            currentFilter = type;
+            document.querySelectorAll('.filter-option').forEach(o => o.classList.remove('active'));
+            event.target.classList.add('active');
+            toggleFilter();
+        }
+
+        // Modals
+        function openSettings() {
+            document.getElementById('settingsModal').classList.add('active');
+            // Update dark mode toggle state based on current mode
+            const darkToggle = document.getElementById('darkToggle');
+            if (document.body.classList.contains('dark-mode')) {
+                darkToggle.classList.add('active');
+            }
+        }
+
+        function openShare() {
+            document.getElementById('shareModal').classList.add('active');
+        }
+
+        function openCreate() {
+            document.getElementById('createModal').classList.add('active');
+        }
+
+        function createAction(type) {
+            const messages = {
+                post: '📸 Opening camera for Post...',
+                story: '📖 Opening camera for Story...',
+                reel: '📹 Opening camera for Reel...'
+            };
+            alert(messages[type] || 'Creating...');
+            closeModal('createModal');
+        }
+
+        function openCreate() {
+            document.getElementById('createModal').classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        function shareAction(action) {
+            const messages = {
+                save: '✅ Post saved!',
+                download: '⬇️ Downloading...',
+                copy: '🔗 Link copied!'
+            };
+            alert(messages[action] || 'Shared!');
+            closeModal('shareModal');
+        }
+
+        function createAction(type) {
+            const messages = {
+                post: '📸 Opening camera for Post...',
+                story: '📖 Opening camera for Story...',
+                reel: '🎥 Opening camera for Reel...',
+                tryon: '🎭 Opening AI Try-On Vault...'
+            };
+            
+            closeModal('createModal');
+            
+            if (type === 'tryon') {
+                showPage('vault');
+            } else {
+                alert(messages[type] || 'Creating...');
+            }
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const darkToggle = document.getElementById('darkToggle');
+            darkToggle.classList.toggle('active');
+            
+            // Save preference
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            
+            // Show feedback
+            const mode = isDark ? 'Dark' : 'Light';
+            console.log(`${mode} mode activated`);
+        }
+
+        function toggleSetting(element, settingId) {
+            element.classList.toggle('active');
+            const isActive = element.classList.contains('active');
+            
+            // Save setting
+            localStorage.setItem(settingId, isActive);
+            
+            // Provide feedback for specific settings
+            const settingNames = {
+                'privateToggle': 'Private Account',
+                'pushToggle': 'Push Notifications',
+                'likesToggle': 'Like Notifications',
+                'commentsToggle': 'Comment Notifications',
+                'followersToggle': 'Follower Notifications',
+                'activityToggle': 'Activity Status',
+                'allowCommentsToggle': 'Comments',
+                'storyShareToggle': 'Story Sharing',
+                'autoplayToggle': 'Auto-play Videos',
+                'qualityToggle': 'High Quality Uploads',
+                'dataToggle': 'Save Data Mode'
+            };
+            
+            const settingName = settingNames[settingId] || 'Setting';
+            const status = isActive ? 'enabled' : 'disabled';
+            console.log(`${settingName} ${status}`);
+        }
+
+        // Load saved preferences on page load
+        function loadPreferences() {
+            // Load dark mode
+            const darkMode = localStorage.getItem('darkMode') === 'true';
+            if (darkMode) {
+                document.body.classList.add('dark-mode');
+            }
+            
+            // Load other settings
+            const settings = [
+                'privateToggle', 'pushToggle', 'likesToggle', 'commentsToggle',
+                'followersToggle', 'activityToggle', 'allowCommentsToggle',
+                'storyShareToggle', 'autoplayToggle', 'qualityToggle', 'dataToggle'
+            ];
+            
+            settings.forEach(settingId => {
+                const value = localStorage.getItem(settingId);
+                if (value !== null) {
+                    const element = document.getElementById(settingId);
+                    if (element) {
+                        if (value === 'true') {
+                            element.classList.add('active');
+                        } else {
+                            element.classList.remove('active');
+                        }
+                    }
+                }
+            });
+        }
+
+        // Close dropdowns on click outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.app-name-container')) {
+                document.getElementById('feedDropdown').classList.remove('active');
+                document.getElementById('appName').classList.remove('active');
+            }
+            if (!e.target.closest('.filter-btn')) {
+                const filter = document.getElementById('filterDropdown');
+                if (filter) filter.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
